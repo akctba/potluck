@@ -13,6 +13,8 @@ To run the project, on the root folder run 'npx zero'
 
 Use cases
 
+[ERD - Entity Relationship Diagram](https://github.com/akctba/potluck/blob/main/documentation/ER_diagram_initial.png?raw=true)
+
 Design
 
 
