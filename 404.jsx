@@ -7,10 +7,10 @@ import {
   Center,
   Image,
 } from "@chakra-ui/react";
-import { PageWrapper } from "./client/makePages";
+// import { PageWrapper } from "./client/makePages";
 
 export default () => (
-  <PageWrapper>
+  // <PageWrapper>
     <Container bg="black">
       <Heading textStyle="h1" mt={7} textAlign="center" color="white">
         You seem lost :({" "}
@@ -22,5 +22,5 @@ export default () => (
       </Text>
       <Image src="https://i.imgur.com/lU18zMp.jpg" />
     </Container>
-  </PageWrapper>
+//  </PageWrapper>
 );

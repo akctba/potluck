@@ -33,7 +33,7 @@ In the future, features to engage the participation can be added.
 1. Download the repository files (project) or clone this project using the 'git clone' command.
 2. Create database schema and tables.
 3. Setup database connection on the file (...).
-4. on the root folder run the command 'npx zero'.
+4. on the root folder run the command `npx zero`.
 
 ## Documentation
 ### User Stories
@@ -48,4 +48,5 @@ Diagram with the core entities<br>
 
 ## Design
 
-
+## Contributing
+If you want to contribute to this project and make it better with new ideas, your pull request is very welcomed. If you find any issue just put it in the repository issue section, thank you.
