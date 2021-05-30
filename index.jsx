@@ -4,6 +4,8 @@ import LandingLayout from "./client/components/layouts/LandingLayout"
 import customTheme from "./client/theme"
 
 const Index = () => {
+
+    
     return (
         <ChakraProvider theme={customTheme}>
             <LandingLayout>

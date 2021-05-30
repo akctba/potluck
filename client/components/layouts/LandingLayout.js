@@ -10,9 +10,8 @@ export default function LandingLayout(props) {
     <Flex
       direction="column"
       align="center"
-      //maxW={{ xl: "1200px" }}
-      w="100%"
-      h="100%"
+      w="100vw"
+      h="100vh"
       justify="space-between"
       wrap="wrap"
       m="0 auto"
@@ -20,7 +19,7 @@ export default function LandingLayout(props) {
       {...props}
     >
       <Header />
-      <Container as="content" w="100%" h="100%" justify="space-between" wrap="wrap">
+      <Container as="content" w="100%" justify="space-between" wrap="wrap">
         {props.children}
       </Container>
       <Footer />

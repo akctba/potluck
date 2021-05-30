@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Flex, Text } from "@chakra-ui/react";
 
 const Footer = (props) => {
+
+  const [serverTime, setServerTime] = useState('');
+
+  useEffect(() => {
+    
+  }, [])
 
   return (
     <Flex
