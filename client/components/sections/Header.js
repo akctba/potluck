@@ -1,20 +1,24 @@
 import React from "react";
-import { Box, Flex, Text, Button } from "@chakra-ui/react";
+import { Link, Box, Flex, Text, Button, Stack } from "@chakra-ui/react";
 import Logo from "../ui/Logo";
 
-const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
+const NavBar = (props) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  const toggle = () => setIsOpen(!isOpen);
+
   return (
-    <Text
-      mb={{ base: isLast ? 0 : 8, sm: 0 }}
-      mr={{ base: 0, sm: isLast ? 0 : 8 }}
-      display="block"
-      {...rest}
-    >
-      {/* <Link to={to}>{children}</Link> */}
-      <a href={to} >{children}</a>
-    </Text>
+    <NavBarContainer {...props}>
+      <Logo
+        w="100px"
+        color={["white", "white", "yellow.500", "yellow.500"]}
+      />
+      <MenuToggle toggle={toggle} isOpen={isOpen} />
+      <MenuLinks isOpen={isOpen} />
+    </NavBarContainer>
   );
 };
+
 
 const CloseIcon = () => (
   <svg width="24" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
@@ -38,10 +42,59 @@ const MenuIcon = () => (
   </svg>
 );
 
-const Header = (props) => {
-  const [show, setShow] = React.useState(false);
-  const toggleMenu = () => setShow(!show);
+const MenuToggle = ({ toggle, isOpen }) => {
+  return (
+    <Box display={{ base: "block", md: "none" }} onClick={toggle}>
+      {isOpen ? <CloseIcon /> : <MenuIcon />}
+    </Box>
+  );
+};
 
+const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
+  return (
+    <Link href={to}>
+      <Text display="block" {...rest}>
+        {children}
+      </Text>
+    </Link>
+  );
+};
+
+const MenuLinks = ({ isOpen }) => {
+  return (
+    <Box
+      display={{ base: isOpen ? "block" : "none", md: "block" }}
+      flexBasis={{ base: "100%", md: "auto" }}
+    >
+      <Stack
+        spacing={8}
+        align="center"
+        justify={["center", "space-between", "flex-end", "flex-end"]}
+        direction={["column", "row", "row", "row"]}
+        pt={[4, 4, 0, 0]}
+      >
+        <MenuItem to="/">Home</MenuItem>
+        <MenuItem to="/how">How It works </MenuItem>
+        <MenuItem to="/features">Features </MenuItem>
+        <MenuItem to="/signinup" isLast>
+          <Button
+            size="sm"
+            rounded="md"
+            color={["yellow.500", "yellow.500", "white", "white"]}
+            bg={["white", "white", "yellow.500", "yellow.500"]}
+            _hover={{
+              bg: ["yellow.100", "yellow.100", "yellow.600", "yellow.600"]
+            }}
+          >
+            Log in
+          </Button>
+        </MenuItem>
+      </Stack>
+    </Box>
+  );
+};
+
+const NavBarContainer = ({ children, ...props }) => {
   return (
     <Flex
       as="nav"
@@ -49,53 +102,95 @@ const Header = (props) => {
       justify="space-between"
       wrap="wrap"
       w="100%"
+      mb={8}
       p={8}
       bg={["yellow.500", "yellow.500", "transparent", "transparent"]}
       color={["white", "white", "yellow.700", "yellow.700"]}
       {...props}
     >
-      <Flex align="center">
-        <Logo
-          w="100px"
-          color={["white", "white", "yellow.500", "yellow.500"]}
-        />
-      </Flex>
-
-      <Box display={{ base: "block", md: "none" }} onClick={toggleMenu}>
-        {show ? <CloseIcon /> : <MenuIcon />}
-      </Box>
-
-      <Box
-        display={{ base: show ? "block" : "none", md: "block" }}
-        flexBasis={{ base: "100%", md: "auto" }}
-      >
-        <Flex
-          align="center"
-          justify={["center", "space-between", "flex-end", "flex-end"]}
-          direction={["column", "row", "row", "row"]}
-          pt={[4, 4, 0, 0]}
-        >
-          <MenuItem to="/">Home</MenuItem>
-          <MenuItem to="/how">How It works </MenuItem>
-          <MenuItem to="/faetures">Features </MenuItem>
-          {/* <MenuItem to="/pricing">Pricing </MenuItem> */}
-          <MenuItem to="/signup" isLast>
-            <Button
-              size="sm"
-              rounded="md"
-              color={["yellow.500", "yellow.500", "white", "white"]}
-              bg={["white", "white", "yellow.500", "yellow.500"]}
-              _hover={{
-                bg: ["yellow.100", "yellow.100", "yellow.600", "yellow.600"]
-              }}
-            >
-              Create Account
-            </Button>
-          </MenuItem>
-        </Flex>
-      </Box>
+      {children}
     </Flex>
   );
 };
 
-export default Header;
+export default NavBar;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const Header = (props) => {
+//   const [show, setShow] = React.useState(false);
+//   const toggleMenu = () => setShow(!show);
+
+//   return (
+//     <Flex
+//       as="nav"
+//       align="center"
+//       justify="space-between"
+//       wrap="wrap"
+//       w="100%"
+//       p={8}
+//       bg={["yellow.500", "yellow.500", "transparent", "transparent"]}
+//       color={["white", "white", "yellow.700", "yellow.700"]}
+//       {...props}
+//     >
+//       <Flex align="center">
+//         <Logo
+//           w="100px"
+//           color={["white", "white", "yellow.500", "yellow.500"]}
+//         />
+//       </Flex>
+
+//       <Box display={{ base: "block", md: "none" }} onClick={toggleMenu}>
+//         {show ? <CloseIcon /> : <MenuIcon />}
+//       </Box>
+
+//       <Box
+//         display={{ base: show ? "block" : "none", md: "block" }}
+//         flexBasis={{ base: "100%", md: "auto" }}
+//       >
+//         <Flex
+//           align="center"
+//           justify={["center", "space-between", "flex-end", "flex-end"]}
+//           direction={["column", "row", "row", "row"]}
+//           pt={[4, 4, 0, 0]}
+//         >
+//           <MenuItem to="/">Home</MenuItem>
+//           <MenuItem to="/how">How It works </MenuItem>
+//           <MenuItem to="/faetures">Features </MenuItem>
+//           {/* <MenuItem to="/pricing">Pricing </MenuItem> */}
+//           <MenuItem to="/signup" isLast>
+//             <Button
+//               size="sm"
+//               rounded="md"
+              // color={["yellow.500", "yellow.500", "white", "white"]}
+              // bg={["white", "white", "yellow.500", "yellow.500"]}
+              // _hover={{
+              //   bg: ["yellow.100", "yellow.100", "yellow.600", "yellow.600"]
+//               }}
+//             >
+//               Create Account
+//             </Button>
+//           </MenuItem>
+//         </Flex>
+//       </Box>
+//     </Flex>
+//   );
+// };
+
+// export default Header;
