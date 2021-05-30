@@ -3,7 +3,7 @@ import { ChakraProvider, Box } from "@chakra-ui/react";
 import LandingLayout from "./client/components/layouts/LandingLayout"
 import customTheme from "./client/theme"
 
-const Index = () => {
+const How = () => {
 
     
     return (
@@ -15,4 +15,4 @@ const Index = () => {
     );
 };
 
-export default Index;
+export default How;
